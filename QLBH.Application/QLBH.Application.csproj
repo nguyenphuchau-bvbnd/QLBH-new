@@ -11,5 +11,8 @@
     <ProjectReference Include="..\QLBH.Utilities\QLBH.Utilities.csproj" />
     <ProjectReference Include="..\QLBH.ViewModels\QLBH.ViewModels.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Users\" />
+  </ItemGroup>
 
 </Project>

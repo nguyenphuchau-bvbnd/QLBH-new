@@ -17,7 +17,8 @@ namespace QLBH.ViewModels.Catalog.Products
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
 
-        public IFormFile ThumbnailImage { get; set; }
+        public bool? IsFeatured { get; set; }
 
+        public IFormFile ThumbnailImage { get; set; }
     }
 }
