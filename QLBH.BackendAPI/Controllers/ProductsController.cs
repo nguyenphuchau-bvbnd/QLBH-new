@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace QLBH.BackendAPI.Controllers
 {
 
-    //api/products
+    //    api/products
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase

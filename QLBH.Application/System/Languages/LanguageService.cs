@@ -11,13 +11,13 @@ namespace QLBH.Application.System.Languages
 {
     public class LanguageService : ILanguageService
     {
-        private readonly IConfiguration _config;
+        //private readonly IConfiguration _config;
         private readonly QLBHDbContext _context;
 
-        public LanguageService(QLBHDbContext context,
-            IConfiguration config)
+        public LanguageService(QLBHDbContext context)//--,
+            //IConfiguration config)
         {
-            _config = config;
+            //_config = config;
             _context = context;
         }
 

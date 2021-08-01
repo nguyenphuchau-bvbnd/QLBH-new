@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using QLBH.Application.Catalog.Categories;
 using QLBH.Application.Catalog.Products;
 using QLBH.Application.Common;
+using QLBH.Application.System.Languages;
 using QLBH.Data.EF;
 using QLBH.Utilities.Constants;
 
@@ -34,6 +35,8 @@ namespace QLBH.BackendAPI
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ILanguageService, LanguageService>();
+
 
 
             services.AddControllersWithViews();

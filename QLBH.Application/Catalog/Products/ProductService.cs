@@ -123,7 +123,8 @@ namespace QLBH.Application.Catalog.Products
         public async Task<int> Delete(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) throw new QLBHException($"Cannot find a product: {productId}");
+
+            if (product == null) throw new QLBHException($"Không tìm thấy sản phẩm có ID: {productId}");
 
             var images = _context.ProductImages.Where(i => i.ProductId == productId);
             foreach (var image in images)
@@ -231,7 +232,7 @@ namespace QLBH.Application.Catalog.Products
         {
             var image = await _context.ProductImages.FindAsync(imageId);
             if (image == null)
-                throw new QLBHException($"Cannot find an image with id {imageId}");
+                throw new QLBHException($"Không tìm thấy ảnh có id {imageId}");
 
             var viewModel = new ProductImageViewModel()
             {
@@ -267,7 +268,7 @@ namespace QLBH.Application.Catalog.Products
         {
             var productImage = await _context.ProductImages.FindAsync(imageId);
             if (productImage == null)
-                throw new QLBHException($"Cannot find an image with id {imageId}");
+                throw new QLBHException($"Không tìm thấy ảnh có id {imageId}");
             _context.ProductImages.Remove(productImage);
             return await _context.SaveChangesAsync();
         }
@@ -278,7 +279,7 @@ namespace QLBH.Application.Catalog.Products
             var productTranslations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id
             && x.LanguageId == request.LanguageId);
 
-            if (product == null || productTranslations == null) throw new QLBHException($"Cannot find a product with id: {request.Id}");
+            if (product == null || productTranslations == null) throw new QLBHException($"Không tìm thấy sản phẩm có id: {request.Id}");
 
             productTranslations.Name = request.Name;
             productTranslations.SeoAlias = request.SeoAlias;
@@ -306,7 +307,7 @@ namespace QLBH.Application.Catalog.Products
         {
             var productImage = await _context.ProductImages.FindAsync(imageId);
             if (productImage == null)
-                throw new QLBHException($"Cannot find an image with id {imageId}");
+                throw new QLBHException($"Không tìm thấy ảnh có id {imageId}");
 
             if (request.ImageFile != null)
             {
@@ -320,7 +321,7 @@ namespace QLBH.Application.Catalog.Products
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
         {
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) throw new QLBHException($"Cannot find a product with id: {productId}");
+            if (product == null) throw new QLBHException($"Không tìm thấy sản phẩm id: {productId}");
             product.Price = newPrice;
             return await _context.SaveChangesAsync() > 0;
         }
@@ -328,7 +329,7 @@ namespace QLBH.Application.Catalog.Products
         public async Task<bool> UpdateStock(int productId, int addedQuantity)
         {
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) throw new QLBHException($"Cannot find a product with id: {productId}");
+            if (product == null) throw new QLBHException($"Không tìm thấy sản phẩm có id: {productId}");
             product.Stock += addedQuantity;
             return await _context.SaveChangesAsync() > 0;
         }
