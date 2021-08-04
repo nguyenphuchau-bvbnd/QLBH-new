@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +10,9 @@ using QLBH.Application.Catalog.Categories;
 using QLBH.Application.Catalog.Products;
 using QLBH.Application.Common;
 using QLBH.Application.System.Languages;
+using QLBH.Application.System.Users;
 using QLBH.Data.EF;
+using QLBH.Data.Entities;
 using QLBH.Utilities.Constants;
 
 namespace QLBH.BackendAPI
@@ -30,6 +33,9 @@ namespace QLBH.BackendAPI
             services.AddDbContext<QLBHDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<QLBHDbContext>()
+                .AddDefaultTokenProviders();
 
             //Add DI
             services.AddTransient<IStorageService, FileStorageService>();
@@ -37,7 +43,11 @@ namespace QLBH.BackendAPI
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
 
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 
+            services.AddTransient<IUserService, UserService>();
 
             services.AddControllersWithViews();
 
