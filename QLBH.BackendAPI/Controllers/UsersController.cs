@@ -23,30 +23,31 @@ namespace QLBH.BackendAPI.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authenticate([FromForm] LoginRequest request)
+        public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var result = await _userService.Authencate(request);
 
-            if (string.IsNullOrEmpty(result.ResultObj))
-            //    if (string.IsNullOrEmpty(result))
-                {
-                return BadRequest(result);
+            if (string.IsNullOrEmpty(result))
+            {
+                return BadRequest("Username or password is incorrect.");
             }
             return Ok(result);
         }
 
+        
+
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var result = await _userService.Register(request);
-            if (!result.IsSuccessed)
+            if (!result)
             {
                 return BadRequest(result);
             }

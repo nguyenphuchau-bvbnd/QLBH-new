@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using QLBH.BackendAPI.Models;
+using QLBH.AdminApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QLBH.BackendAPI.Controllers
+namespace QLBH.AdminApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,6 +22,7 @@ namespace QLBH.BackendAPI.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 

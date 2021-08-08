@@ -10,9 +10,9 @@ namespace QLBH.Application.System.Users
     public interface IUserService
     {
         //Task<string> Authencate(LoginRequest request);
-        Task<ApiResult<string>> Authencate(LoginRequest request);
+        Task<string> Authencate(LoginRequest request);
 
-        Task<ApiResult<bool>> Register(RegisterRequest request);
+        Task<bool> Register(RegisterRequest request);
 
         //Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request);
 

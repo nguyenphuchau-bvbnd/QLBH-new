@@ -17,6 +17,9 @@ using QLBH.Data.EF;
 using QLBH.Data.Entities;
 using QLBH.Utilities.Constants;
 using System.Collections.Generic;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using QLBH.ViewModels.System.Users;
 
 namespace QLBH.BackendAPI
 {
@@ -52,7 +55,9 @@ namespace QLBH.BackendAPI
 
             services.AddTransient<IUserService, UserService>();
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
 
             //Add Swagger
             services.AddSwaggerGen(c =>
