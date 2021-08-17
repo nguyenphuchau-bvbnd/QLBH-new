@@ -21,13 +21,24 @@
                 <div class="col-md-6 col-xs-12">
                     <form asp-action="Index" method="get">
                         <div class="row">
-                            <div class="col-md-9">
-                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
-                            </div>
-                            <div class="cold-md-3">
-                                <button type="submit" class="btn btn-primary">Tìm</button>
+
+                            <div class="input-group">
+                                <input class="form-control" type="text" value="@ViewBag.Keyword" name="keyword" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
                                 <button type="button" onclick="window.location.href='/User/Index'" class="btn btn-dark">Reset</button>
                             </div>
+
+                            @*<div class="col-md-8">
+                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+                            </div>
+                            <div class="cold-md-4">
+                                <button type="submit" class="btn btn-primary">Tìm</button>
+
+
+                                <button type="button" onclick="window.location.href='/User/Index'" class="btn btn-dark">Reset</button>
+
+
+                            </div>*@
                         </div>
                     </form>
                 </div>
