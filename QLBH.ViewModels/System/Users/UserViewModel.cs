@@ -8,9 +8,9 @@ namespace QLBH.ViewModels.System.Users
     public class UserViewModel
     {
         public Guid Id { get; set; }
-        [Display (Name ="Tên")]
+        [Display (Name ="Họ")]
         public string FirstName { get; set; }
-
+        [Display(Name = "Tên")]
         public string LastName { get; set; }
 
         public string PhoneNumber { get; set; }

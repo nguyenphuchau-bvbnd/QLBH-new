@@ -29,16 +29,16 @@
                             </div>
 
                             @*<div class="col-md-8">
-                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
-                            </div>
-                            <div class="cold-md-4">
-                                <button type="submit" class="btn btn-primary">Tìm</button>
+                                    <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+                                </div>
+                                <div class="cold-md-4">
+                                    <button type="submit" class="btn btn-primary">Tìm</button>
 
 
-                                <button type="button" onclick="window.location.href='/User/Index'" class="btn btn-dark">Reset</button>
+                                    <button type="button" onclick="window.location.href='/User/Index'" class="btn btn-dark">Reset</button>
 
 
-                            </div>*@
+                                </div>*@
                         </div>
                     </form>
                 </div>
@@ -46,6 +46,14 @@
         </div>
 
         <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -88,9 +96,9 @@
                                     @Html.DisplayFor(modelItem => item.Email)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
                                 </td>
                             </tr>
                         }
@@ -101,3 +109,11 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
+    </script>
+}
