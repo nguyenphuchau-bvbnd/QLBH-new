@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using QLBH.ViewModels.System.Users;
+using QLBH.Application.System.Roles;
 
 namespace QLBH.BackendAPI
 {
@@ -54,6 +55,7 @@ namespace QLBH.BackendAPI
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
 
             services.AddControllers()
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
