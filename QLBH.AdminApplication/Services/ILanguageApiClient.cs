@@ -1,5 +1,5 @@
 ﻿using QLBH.ViewModels.Common;
-using QLBH.ViewModels.System.Roles;
+using QLBH.ViewModels.System.Languages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace QLBH.AdminApplication.Services
 {
-    public interface IRoleApiClient
+    public interface ILanguageApiClient
     {
-        Task<ApiResult<List<RoleVm>>> GetAll();
+        Task<ApiResult<List<LanguageVm>>> GetAll();
     }
 }

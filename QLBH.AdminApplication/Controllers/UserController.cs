@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-using QLBH.AdminApp.Services;
 using QLBH.AdminApplication.Services;
 using QLBH.ViewModels.Common;
 using QLBH.ViewModels.System.Users;

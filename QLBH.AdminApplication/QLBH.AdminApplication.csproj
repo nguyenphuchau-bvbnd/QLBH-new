@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QLBH.Utilities\QLBH.Utilities.csproj" />
     <ProjectReference Include="..\QLBH.ViewModels\QLBH.ViewModels.csproj" />
   </ItemGroup>
 
