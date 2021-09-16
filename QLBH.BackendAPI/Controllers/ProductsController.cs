@@ -54,7 +54,7 @@ namespace QLBH.BackendAPI.Controllers
         }
 
         [HttpPost]
-        //[Consumes("multipart/form-data")]
+        [Consumes("multipart/form-data")]
         //[Authorize]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {

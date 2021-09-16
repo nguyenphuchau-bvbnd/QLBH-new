@@ -10,6 +10,7 @@ using QLBH.ViewModels.Common;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http;
+using QLBH.Utilities.Constants;
 
 namespace QLBH.AdminApplication.Services
 {
@@ -91,8 +92,8 @@ namespace QLBH.AdminApplication.Services
         public async Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest request)
         {
             var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
-            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSettings.Token);
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
 
