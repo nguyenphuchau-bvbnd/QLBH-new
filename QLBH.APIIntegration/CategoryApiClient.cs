@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace QLBH.AdminApplication.Services
+namespace QLBH.APIIntegration
 {
     public class CategoryApiClient : BaseApiClient, ICategoryApiClient
     {

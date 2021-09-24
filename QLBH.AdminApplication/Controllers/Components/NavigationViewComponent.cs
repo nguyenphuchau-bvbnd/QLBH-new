@@ -1,5 +1,5 @@
 ﻿using QLBH.AdminApplication.Models;
-using QLBH.AdminApplication.Services;
+using QLBH.APIIntegration;
 using QLBH.Utilities.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

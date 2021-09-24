@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
-using QLBH.AdminApplication.Services;
+using QLBH.APIIntegration;
 using QLBH.Utilities.Constants;
 using QLBH.ViewModels.Catalog.Products;
 using QLBH.ViewModels.Common;

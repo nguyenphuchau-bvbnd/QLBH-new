@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using QLBH.APIIntegration;
 using QLBH.Utilities.Constants;
 using QLBH.ViewModels.Catalog.Products;
 using QLBH.ViewModels.Common;
@@ -13,7 +14,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLBH.AdminApplication.Services
+namespace QLBH.APIIntegration
 {
     public class ProductApiClient : BaseApiClient, IProductApiClient
     {

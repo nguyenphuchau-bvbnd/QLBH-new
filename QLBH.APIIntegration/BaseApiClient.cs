@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace QLBH.AdminApplication.Services
+namespace QLBH.APIIntegration
 {
     public class BaseApiClient
     {

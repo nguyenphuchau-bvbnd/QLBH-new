@@ -9,8 +9,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using QLBH.APIIntegration;
 
-namespace QLBH.AdminApplication.Services
+namespace QLBH.APIIntegration
 {
     public class LanguageApiClient : BaseApiClient, ILanguageApiClient
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using QLBH.AdminApplication.Services;
+using QLBH.APIIntegration;
 using QLBH.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;

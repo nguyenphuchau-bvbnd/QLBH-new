@@ -12,7 +12,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http;
 using QLBH.Utilities.Constants;
 
-namespace QLBH.AdminApplication.Services
+namespace QLBH.APIIntegration
 {
     public class UserApiClient : IUserApiClient
     {
