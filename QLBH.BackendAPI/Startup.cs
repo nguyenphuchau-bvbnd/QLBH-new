@@ -21,6 +21,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using QLBH.ViewModels.System.Users;
 using QLBH.Application.System.Roles;
+using QLBH.Application.Utilities.Slides;
 
 namespace QLBH.BackendAPI
 {
@@ -49,6 +50,7 @@ namespace QLBH.BackendAPI
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
+            services.AddTransient<ISlideService, SlideService>();
 
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();

@@ -29,14 +29,14 @@ namespace QLBH.APIIntegration
 
         protected async Task<TResponse> GetAsync<TResponse>(string url)
         {
-            var token = _httpContextAccessor
+            var sessions = _httpContextAccessor
                 .HttpContext
                 .Session
                 .GetString(SystemConstants.AppSettings.Token);
 
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.GetAsync(url);
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
@@ -67,6 +67,24 @@ namespace QLBH.APIIntegration
                 return data;
             }
             throw new Exception(body);
+        }
+
+        public async Task<bool> Delete(string url)
+        {
+            var sessions = _httpContextAccessor
+               .HttpContext
+               .Session
+               .GetString(SystemConstants.AppSettings.Token);
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

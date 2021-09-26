@@ -1,4 +1,5 @@
-﻿using QLBH.ViewModels.System.Languages;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using QLBH.ViewModels.System.Languages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace QLBH.AdminApplication.Models
         public List<LanguageVm> Languages { get; set; }
 
         public string CurrentLanguageId { get; set; }
+
+        public string ReturnUrl { set; get; }
     }
 }

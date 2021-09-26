@@ -96,8 +96,7 @@ namespace QLBH.Application.Catalog.Products
                 Stock = request.Stock,
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
-                ProductTranslations = translations,
-                IsFeatured = request.IsFeatured
+                ProductTranslations = translations
             };
             //Save image
             if (request.ThumbnailImage != null)
@@ -143,9 +142,9 @@ namespace QLBH.Application.Catalog.Products
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _context.ProductInCategories on p.Id equals pic.ProductId into ppic
-                                                                                              from pic in ppic.DefaultIfEmpty()
+                        from pic in ppic.DefaultIfEmpty()
                         join c in _context.Categories on pic.CategoryId equals c.Id into picc
-                                                                                    from c in picc.DefaultIfEmpty()
+                        from c in picc.DefaultIfEmpty()
                         where pt.LanguageId == request.LanguageId
                         select new { p, pt, pic };
             //2. filter
@@ -176,7 +175,7 @@ namespace QLBH.Application.Catalog.Products
                     SeoDescription = x.pt.SeoDescription,
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
-                    ViewCount = x.p.ViewCount,
+                    ViewCount = x.p.ViewCount
                 }).ToListAsync();
 
             //4. Select and projection
@@ -276,7 +275,7 @@ namespace QLBH.Application.Catalog.Products
             var productTranslations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id
             && x.LanguageId == request.LanguageId);
 
-            if (product == null || productTranslations == null) throw new QLBHException($"Không tìm thấy sản phẩm có id: {request.Id}");
+            if (product == null || productTranslations == null) throw new QLBHException($"Cannot find a product with id: {request.Id}");
 
             productTranslations.Name = request.Name;
             productTranslations.SeoAlias = request.SeoAlias;
