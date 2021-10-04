@@ -6,6 +6,7 @@ using QLBH.APIIntegration;
 using QLBH.Utilities.Constants;
 using QLBH.ViewModels.Catalog.Products;
 using QLBH.ViewModels.Common;
+using QLBH.ViewModels.System.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -167,6 +168,32 @@ namespace QLBH.AdminApplication.Controllers
                 });
             }
             return categoryAssignRequest;
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            return View(new ProductDeleteRequest()
+            {
+                Id = id
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ProductDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _productApiClient.DeleteProduct(request.Id);
+            if (result)
+            {
+                TempData["result"] = "Xóa sản phẩm thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Xóa không thành công");
+            return View(request);
         }
     }
 }

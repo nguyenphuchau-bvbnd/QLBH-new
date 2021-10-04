@@ -69,6 +69,7 @@ namespace QLBH.WebApplication
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ISlideApiClient, SlideApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
@@ -96,7 +97,9 @@ namespace QLBH.WebApplication
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseSession();
+
             app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
