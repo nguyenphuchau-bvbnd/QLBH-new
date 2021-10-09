@@ -1,4 +1,6 @@
+using FluentValidation.AspNetCore;
 using LazZiya.ExpressLocalization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QLBH.APIIntegration;
+using QLBH.ViewModels.System.Users;
 using QLBH.WebApplication.LocalizationResources;
 using System;
 using System.Collections.Generic;
@@ -36,6 +39,7 @@ namespace QLBH.WebApplication
                 new CultureInfo("vi"),
             };
             services.AddControllersWithViews()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
                 .AddExpressLocalization<ExpressLocalizationResource, ViewLocalizationResource>(ops =>
                 {
                     // When using all the culture providers, the localization process will
@@ -65,6 +69,14 @@ namespace QLBH.WebApplication
                         o.DefaultRequestCulture = new RequestCulture("vi");
                     };
                 });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+             .AddCookie(options =>
+             {
+                 options.LoginPath = "/Account/Login";
+                 options.AccessDeniedPath = "/User/Forbidden/";
+             });
+
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -93,6 +105,7 @@ namespace QLBH.WebApplication
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseRouting();
 
