@@ -27,6 +27,7 @@ namespace QLBH.WebApplication.Controllers
         public IActionResult GetListItems()
         {
             var session = HttpContext.Session.GetString(SystemConstants.CartSession);
+
             List<CartItemViewModel> currentCart = new List<CartItemViewModel>();
             if (session != null)
                 currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
@@ -42,6 +43,7 @@ namespace QLBH.WebApplication.Controllers
                 currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
 
             int quantity = 1;
+
             if (currentCart.Any(x => x.ProductId == id))
             {
                 quantity = currentCart.First(x => x.ProductId == id).Quantity + 1;
