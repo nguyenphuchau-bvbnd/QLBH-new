@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QLBH.APIIntegration;
 using QLBH.Utilities.Constants;
+using QLBH.ViewModels.Sales;
 using QLBH.WebApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,38 @@ namespace QLBH.WebApplication.Controllers
         {
             return View();
         }
+
+        public IActionResult Checkout()
+        {
+            return View(GetCheckoutViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Checkout(CheckoutViewModel request)
+        {
+            var model = GetCheckoutViewModel();
+            var orderDetails = new List<OrderDetailVm>();
+            foreach (var item in model.CartItems)
+            {
+                orderDetails.Add(new OrderDetailVm()
+                {
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity
+                });
+            }
+            var checkoutRequest = new CheckoutRequest()
+            {
+                Address = request.CheckoutModel.Address,
+                Name = request.CheckoutModel.Name,
+                Email = request.CheckoutModel.Email,
+                PhoneNumber = request.CheckoutModel.PhoneNumber,
+                OrderDetails = orderDetails
+            };
+            //TODO: Add to API
+            TempData["SuccessMsg"] = "Order puschased successful";
+            return View(model);
+        }
+
         [HttpGet]
         public IActionResult GetListItems()
         {
@@ -87,6 +120,19 @@ namespace QLBH.WebApplication.Controllers
 
             HttpContext.Session.SetString(SystemConstants.CartSession, JsonConvert.SerializeObject(currentCart));
             return Ok(currentCart);
+        }
+        private CheckoutViewModel GetCheckoutViewModel()
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.CartSession);
+            List<CartItemViewModel> currentCart = new List<CartItemViewModel>();
+            if (session != null)
+                currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
+            var checkoutVm = new CheckoutViewModel()
+            {
+                CartItems = currentCart,
+                CheckoutModel = new CheckoutRequest()
+            };
+            return checkoutVm;
         }
     }
 }
